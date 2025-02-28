@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1><a  th:href="@{/}">Welcom!</a></h1>
+<a th:text="${text}"></a>
+<form th:action="@{/hello}" method="post">
+	<input th:value="${input}" name="input" placeholder="名前を入場してね">
+	<button type="submit">
+</body>
+</html>
