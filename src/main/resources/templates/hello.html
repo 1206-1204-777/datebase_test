@@ -2,13 +2,20 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>登録</title>
 </head>
 <body>
-<h1><a  th:href="@{/}">Welcom!</a></h1>
+<h1>登録画面</h1>
 <a th:text="${text}"></a>
-<form th:action="@{/hello}" method="post">
-	<input th:value="${input}" name="input" placeholder="名前を入場してね">
-	<button type="submit">
+<div th:if="${message}" th:text="${message}" style="color: green;"></div>
+<div th:if="${error}" style="color:red;" th:text="${error}"></div>
+<form th:action="@{/register}" method="post">
+    <input type="text" name="username" placeholder="ユーザー名"><br>
+    <input type="password" name="password" placeholder="パスワード">
+    <button type="submit">登録</button>
+</form>
+
+<a th:href=@{/register}>登録者一覧</a><br>
+<a  th:href="@{/}">戻る</a>
 </body>
 </html>

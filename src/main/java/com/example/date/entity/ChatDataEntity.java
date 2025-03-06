@@ -13,14 +13,14 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "hello")
-public class DataTestEntity {
+@Table(name = "chat")
+public class ChatDataEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@Column(name = "content")
 	private String content;
 	@Column(name ="updated_at")
-	private LocalTime update_At = LocalTime.now();
+	private LocalTime updatedAt = LocalTime.now();
 
 }

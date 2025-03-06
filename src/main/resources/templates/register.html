@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Log</title>
+</head>
+<body>
+<h1>メンバー</h1>
+<table>
+	<tr>
+		<th>ID</th>
+		<th>名前</th>
+		<th>更新時間</th>
+	</tr>
+	<tr th:each="log : ${data}">
+	    <td th:text="${log.id}"></td>
+	    <td th:text="${log.username}"></td>
+	    <td th:text="${#temporals.format(log.updatedAt, 'HH:mm:ss')}"></td>
+	    <td>
+	        <form th:action="@{/delete}" method="post">
+	            <input type="hidden" name="id" th:value="${log.id}">
+	            <button type="submit">削除</button>
+	        </form>
+	    </td>
+	</tr>
+		</table>
+
+<a th:href="@{/hello}">戻る</a>
+</body>
+</html>
