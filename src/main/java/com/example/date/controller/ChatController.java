@@ -2,6 +2,8 @@ package com.example.date.controller;
 
 import java.io.IOException;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,9 +35,15 @@ public class ChatController {
 
 	@GetMapping("/hello")
 	public String msg(Model model) {
-		model.addAttribute("text", "Hello Wellcom!");
 		return "hello";
 
+	}
+	
+	@GetMapping("/login")
+	public String login(Model model) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		model.addAttribute("text", auth.getName());
+		return "login";
 	}
 
 	@PostMapping("/register")
@@ -83,8 +91,6 @@ public class ChatController {
 		return "redirect:/hello";
 	}
 	
-	public void logOut() {
-		
-	}
+
 
 }

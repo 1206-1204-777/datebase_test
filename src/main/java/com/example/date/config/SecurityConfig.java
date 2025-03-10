@@ -12,10 +12,10 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/", "/register","/delete", "/css/**").permitAll()
+                .requestMatchers("/", "/register","/delete","/login", "/css/**").permitAll()
                 .anyRequest().authenticated()
             )
             .formLogin(form -> form
