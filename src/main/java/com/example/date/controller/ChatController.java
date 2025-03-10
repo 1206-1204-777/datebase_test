@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.example.date.entity.ChatDataEntity;
 import com.example.date.entity.UserDataEntity;
 import com.example.date.service.ChatDataService;
 import com.example.date.service.UserService;
@@ -38,7 +37,7 @@ public class ChatController {
 		return "hello";
 
 	}
-	
+
 	@GetMapping("/login")
 	public String login(Model model) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -48,13 +47,13 @@ public class ChatController {
 
 	@PostMapping("/register")
 	public String inputData(@ModelAttribute UserDataEntity data, RedirectAttributes re) throws IOException {
-		if(nameService.isUserExists(data.getUsername())) {
-			re.addFlashAttribute("error","すでに登録済みの名前です");
+		if (nameService.isUserExists(data.getUsername())) {
+			re.addFlashAttribute("error", "すでに登録済みの名前です");
 			return "redirect:/hello";
 		}
-		re.addFlashAttribute("message","登録が完了しました！");
+		re.addFlashAttribute("message", "登録が完了しました！");
 		nameService.setData(data);
-		
+
 		return "chat_view";
 	}
 
@@ -81,16 +80,9 @@ public class ChatController {
 		return "redirect:/register";
 	}
 
-	@PostMapping("/hello/chat")
-	public String saveChat(ChatDataEntity chat, Model model) {
-		try {
-			chatService.saveChat(chat);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return "redirect:/hello";
+	@GetMapping("/chat_view")
+	public String chatView() {
+		return "chat_view";
 	}
-	
-
 
 }

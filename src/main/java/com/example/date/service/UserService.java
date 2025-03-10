@@ -23,11 +23,10 @@ public class UserService {
 
 	@Transactional
 	public void setData(UserDataEntity data) throws IOException {
-		//String uuid = UUID.randomUUID().toString();
+		/*idの格納*/
 		data.setId(UUID.randomUUID().toString());
-
+		/*パスワードの格納*/
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		//String hashedPassword = encoder.encode(data.getPassword());
 		data.setPassword(encoder.encode(data.getPassword()));
 		System.out.println(data);
 		repository.save(data);
